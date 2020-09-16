@@ -1,0 +1,348 @@
+\documentclass{article}
+
+%
+% Importing Useful Packages
+%
+\usepackage{fancyhdr}
+\usepackage{amssymb,latexsym,physics,amsmath,mathrsfs}
+
+ %
+ % Basic Document Settings
+ %
+
+ \topmargin=-0.45in
+ \evensidemargin=0in
+ \oddsidemargin=0in
+ \textwidth=6.5in
+ \textheight=9.0in
+ \headsep=0.25in
+
+ \linespread{1.1}
+
+ \pagestyle{fancy}
+ \lhead{Moore}
+ \chead{Phys 521\ (Mobley 11am): Homework 1}
+
+ % Optional Extra Marks w/ hw problems listed in top right margin
+ % See: https://github.com/jdavis/latex-homework-template/blob/master/homework.tex
+ %\rhead{\firstxmark}
+ %\lfoot{\lastxmark}
+
+ \cfoot{\thepage}
+
+ \renewcommand\headrulewidth{0.4pt}
+ \renewcommand\footrulewidth{0.4pt}
+
+ \setlength\parindent{0pt}
+ \parskip 2mm
+
+
+
+\title{
+      \vspace{2in}
+      \textmd{\textbf{Physics 521: Homework 1}}
+}
+
+\author{Joshua Moore}
+
+
+% Begin Write-up
+
+\begin{document}
+
+% Making Title Page
+
+\maketitle
+\newpage
+
+%
+% Problem 1.6.2
+%
+
+\section*{Problem 1.6.2}
+
+Verify that for a critically damped oscillator $x = (A +Bt)\exp(-\beta t)$ satisfies
+the equation of motion.
+
+
+\subsection*{Solution:}
+
+The equation of motion for a damped oscillator is given by the homogeneous differential equation:
+
+\[
+  m \dv[2]{x}{t} + R_m \dv{x}{t} + s x = 0
+\]
+
+where $\beta \equiv R_m / 2m$, $\omega_{0}^2 \equiv s/m$. We could substitute the entire solution into
+the differential equation, but that becomes tedious and messy. Instead, it suffices to show that the
+solution holds for each additive term individually.
+
+% Verifying for first term
+\[
+  \begin{split}
+    \text{let}\quad x_1 &= A \exp(-\beta t)
+    \\
+    \text{then}\quad\dot{x_1} &= -\beta A \exp(-\beta t)
+    \\
+    \ddot{x_1} &= \beta^2 A \exp(-\beta t)
+  \end{split}
+\]
+
+Then we have:
+\[
+  \begin{split}
+    \ddot{x_1} + 2 \beta \dot{x_1} + \omega_{0}^2 x_1 &= ( \beta^2 -2 \beta^2 +\omega_{0}^2 ) A \exp( -\beta t )
+                                                      \\
+                                                      &= ( \omega_{0}^2 -\beta^2 ) A \exp( -\beta t )
+                                                      \\
+                                                      &= 0
+  \end{split}
+\]
+
+since the condition for critical damping is exactly $( \omega_{0}^2 = \beta^2 ).$ Hence, we have shown that
+$x_1$ is a solution to the differential equation. We can show that a similar argument holds for the second additive term.
+
+% Verifying for the second term
+\[
+  \begin{split}
+    \text{let}\quad x_2 &= B t \exp(-\beta t)
+    \\
+    \text{then}\quad\dot{x_2} &=  B \exp(-\beta t) ( 1 - \beta t )
+    \\
+    \ddot{x_2} &=  B \exp(-\beta t) ( -\beta + \beta^2 t - \beta )
+    \\
+    \ddot{x_2} &=  B \exp(-\beta t) ( \beta^2 t - 2\beta )
+  \end{split}
+\]
+
+Then we have:
+\[
+  \begin{split}
+    \ddot{x_2} + 2 \beta \dot{x_2} + \omega_{0}^2 x_2 &= ( \beta^2 t -2 \beta +2 \beta( 1 - \beta t )
+                                                            +\omega_{0}^2 t ) B \exp( -\beta t )
+                                                      \\
+                                                      &= ( \omega_{0}^2 t -\beta^2 t ) B \exp( -\beta t )
+                                                      \\
+                                                      &= ( \omega_{0}^2 - \beta ^2 ) B t \exp( -\beta t )
+                                                      \\
+                                                      &= 0
+  \end{split}
+\]
+
+% Conclusion & QED
+By the same reasoning as for $x_1$, we have verified that $x_2$ is also a solution. Moreover, since the
+differential equation is linear, then any linear combination of solutions must also be a solution, so
+we have shown that $x = x_1 + x_2 = (A +Bt)\exp(-\beta t)$ is therefore also a solution.
+
+\newpage
+
+%
+% Problem 1.6.3
+%
+
+\section*{Problem 1.6.3}
+
+Show that if $\beta \ll \omega_{0}$ then $ \omega_d \approx \omega_{0}[ 1 - \frac{1}{2} (\beta / \omega_0)^2 ]. $
+
+\subsection*{Solution:}
+
+Given the differential equation
+
+\[
+  m \dv[2]{x}{t} + R_m \dv{x}{t} + s x = 0,
+\]
+
+we obtain solutions of the form $ x(t) = C \exp(\gamma t) $, where $\gamma$ satisfies
+\begin{gather*}
+  \gamma^2 + 2 \beta \gamma + \omega_{0}^2 = 0.
+  \\
+  \Rightarrow \gamma_{\pm} = -\beta \pm \sqrt{ \beta^2 - \omega_{0}^2 }
+  \\
+\end{gather*}
+
+We define $ \omega_d \equiv \sqrt{ \omega_{0}^2 - \beta^2 }$ so that
+
+\[
+   \gamma_{\pm} = - \beta \pm j \omega_d
+\]
+
+
+For the particular case $ \beta \ll \omega_{0} $, we write $ \omega_d $ as
+
+\[
+  \begin{split}
+    \omega_d &= \omega_{0}[ 1 - ( \beta / \omega_{0})^2 ] ^ \frac{1}{2}
+    \\
+             &\approx \omega_{0}[ 1 - \frac{1}{2} ( \beta / \omega_{0} )^2 ]
+  \end{split}
+\]
+
+where I have used the binomial approximation to first order since $ \beta / \omega_{0} \ll 1 $.
+
+\newpage
+%
+% Problem 1.15.4
+%
+
+\section*{Problem 1.15.4}
+
+A simple oscillator at rest is struck with a force $ \textbf{f}(t) = \mathscr{F} \delta(t) $ where $ \mathscr{f} = 1 \text{N} \cdot \text{s} $ is the impulse. Find the displacement and the speed of the
+mass using Fourier transforms.
+
+\section*{Solution:}
+
+We must solve the following differential equation:
+
+\[
+m \dv[2]{x}{t} + R_m \dv{x}{t} + s x = f(t)
+\]
+
+where $\mathbf{f}(t) = \mathscr{F} \delta (t)$. The general solution is a linear combination of the homogeneous and
+particular solutions. We also have the initial conditions that the oscillator is at rest $(x(t=0) = 0$, $\dot{x}(t=0) = 0)$
+which, as we'll see, means that the homogeneous solution is the trivial solution $x_{hom}(t) = 0$.
+
+\subsection*{Homogeneous Solution:}
+
+The homogeneous solution is given by a solution to the equation
+
+\[
+m \dv[2]{x}{t} + R_m \dv{x}{t} + s x = 0.
+\]
+
+We begin by making an appropriate ansatz for the solution.
+\begin{gather*}
+  \text{Ansatz:}\quad x(t) = e^{\gamma t}
+  \\
+  \Rightarrow (\gamma^2 m + \gamma R_m + s) e^{\gamma t} = 0
+\end{gather*}
+which must hold for all time $t$, so we must have that
+\[
+\gamma^2 m + \gamma R_m + s = 0.
+\]
+Equivalently,
+\[
+  \gamma^2 + \gamma 2 \beta + \omega_{0}^2 = 0
+\]
+where $\beta \equiv R_m / 2m$, $\omega_{0}^2 \equiv s/m$. The roots to the characteristic equation are given by
+
+\[
+ \gamma_{\pm} = - \beta \pm  j \sqrt{\omega_{0}^2 - \beta ^2}
+\]
+
+so the general solution to the homogeneous equation is
+
+\[
+  x_{hom}(t) = A e^{\gamma_+ t} + B e^{\gamma_- t}.
+\]
+
+% Using initial conditions to determine the unknown coeff. in the hom. soln
+Substituting in the initial conditions, we find
+\begin{gather*}
+  A = -B
+  \\
+  \begin{split}
+    A \gamma_+ + B \gamma_- = 0 &=  A \gamma_+ - A \gamma_-
+    \\
+    &= A(\gamma_+ - \gamma_-)
+  \end{split}
+  \\
+  \Rightarrow A = B = 0
+  \\
+  \boxed{ \Rightarrow x_{hom}(t) = 0 }
+\end{gather*}
+
+since $(\gamma_+ - \gamma_-) \neq 0$ in general. This result is simply a restatement of Newton's First Law
+since, at equilibrium, the mass experiences no net force and therefore remains stationary under time evolution.
+
+The general solution is then given by
+\[
+  \begin{split}
+    x(t) &= x_{p}(t) + x_{hom}(t) \\
+         &= x_p(t)
+  \end{split}
+\]
+which is simply the particular solution that can be readily obtained via Fourier analysis.
+
+\subsection*{Inhomogeneous/Particular Solution:}
+
+We now solve the inhomogeneous problem using Fourier transforms. The inhomogeneous differential equation is:
+\[
+  m \dv[2]{x}{t} + R_m \dv{x}{t} + s x = f(t) = \mathscr{F} \delta(t)
+\]
+
+We now re-express both $ x(t) $ and $ f(t) $ in terms of their Fourier transforms.
+\begin{align}
+    x(t) &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{j \omega t} \tilde{x} (\omega) \mathrm{d} \omega \label{ftx}
+    \\
+    f(t) &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{j \omega t} \tilde{f} (\omega) \mathrm{d} \omega \label{ftf}
+    \\
+    \text{where}\quad \tilde{f}(w) &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-j \omega t} f(t) dt
+\end{align}
+
+Substituting the expressions (\ref{ftx}) and (\ref{ftf}) into the differential equation yields
+\begin{gather*}
+    \int_{-\infty}^{\infty} e^{j \omega t} \tilde{x}(\omega) [-\omega^2 m + j R_m \omega + s] \mathrm{d} \omega
+  = \int_{-\infty}^{\infty} e^{j \omega t} \tilde{f}(\omega) \mathrm{d} \omega
+  \\
+  \Rightarrow \tilde{x}(\omega) = \frac{ \tilde{f}(\omega) }{ -\omega^2 m + j R_m \omega + s }
+\end{gather*}
+
+Solving for $ \tilde{f}(\omega) $ using the inverse transform and the explicit form for the force $ f(t) $, we find
+\[
+  \begin{split}
+    \tilde{f}(w) &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-j \omega t} \mathscr{F} \delta(t) dt
+                \\
+                &= \frac{ \mathscr{F} }{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-j \omega t} \delta(t) dt
+                \\
+                &= \frac{ \mathscr{F} }{\sqrt{2\pi}}
+  \end{split}
+\]
+
+so the spectral distribution is evidently a constant for all frequencies. We now have
+\begin{equation}
+  \tilde{x}(\omega) = \frac{1}{\sqrt{2\pi}} \frac{ \mathscr{F} }{ -\omega^2 m + j R_m \omega + s }. \label{xw}
+\end{equation}
+
+
+Operationally, all that's left to do is to solve for $x(t)$ via the Fourier transform (\ref{ftx}); however, some things are easier said than done, and the integral is not trivial by any means.
+
+\newpage
+
+% Comment on adding the hom. soln to Fourier analysis
+
+\subsubsection*{\underline{Comment}:}
+
+We could have also included the solution to the homogeneous problem here using the method of Fourier transforms by adding to $ \tilde{x}(\omega) $ two extra terms so that
+\[
+  \tilde{x}(\omega) = \frac{1}{\sqrt{2\pi}} \frac{ \mathscr{F} }{ -\omega^2 m + j R_m \omega + s } + \sqrt{2 \pi}(A \delta(\omega + j \gamma_+)
+                      + B \delta( \omega + j \gamma_-) )
+\]
+
+where $ \gamma_{\pm} $ are the roots to the characteristic polynomial from the solution to the homogeneous problem. It's easy to see that these terms trivially integrate to give the exact form of the homogeneous solution above. Evidently, we gain no computational advantage by including these terms, so this observation merely notes how the general solution could be obtained solely through Fourier analysis alone.
+
+\noindent\rule[0.5ex]{\linewidth}{1pt}
+
+\subsection*{The Integral:}
+
+Formally, we already have a solution to the inhomogeneous problem. It's given by (\ref{ftx}) where we substitute in (\ref{xw}) for $\tilde{x} (\omega) $. The solution is
+\[
+  \begin{split}
+    \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^ {j \omega t} \tilde{x}(\omega) \mathrm{d} \omega
+    &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^ {j \omega t} ( \frac{1}{\sqrt{2\pi}} \frac{ \mathscr{F} }{ -\omega^2 m + j R_m \omega + s }) \mathrm{d} \omega
+    \\
+    \\
+    &= \frac{1}{2 \pi} \frac{ \mathscr{F} }{m} \int_{-\infty}^{\infty} e^{j \omega t} \frac{  \dd{\omega} }{ \omega_0^2 - \omega^2 + j 2 \beta \omega }.
+  \end{split}
+\]
+
+However, it is difficult to understand the solution in this form, so we'd like to be able to write it in closed form.
+Since we can't rely on somehow evaluating an anti-derivative of the integrand, we're left with evaluating the integral
+using contour integration. In particular, we notice that the integrand has two poles given by the roots
+of the quadratic in the denominator.
+  \begin{gather*}
+    \omega_0^2 - \omega^2 + j 2 \beta \omega = 0 \\
+    \text{which has solutions} \quad \omega_{\pm} = j \beta \pm \sqrt{ \omega_{0}^2 - \beta^2}
+  \end{gather*}
+
+
+\end{document}
