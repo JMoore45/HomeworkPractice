@@ -1,3 +1,3 @@
 # HomeworkPractice
 
-# Initial repository to store acoustics hw for PHYS 521
+Initial repository to store acoustics hw for PHYS 521
